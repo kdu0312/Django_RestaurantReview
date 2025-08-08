@@ -1,0 +1,15 @@
+repos:
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.12.7  # 최신 릴리스 (2025년 8월 기준)
+  hooks:
+  - id: ruff
+    args: [--fix, --exit-non-zero-on-fix]  # 자동 수정 및 수정 시 커밋 실패
+  - id: ruff-format
+    args: [--line-length=88]  # black 호환, Django 표준 라인 길이
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+  - id: check-added-large-files
+    args: [--maxkb=100]  # 100KB 초과 파일 커밋 방지
+  - id: trailing-whitespace
+  - id: end-of-file-fixer

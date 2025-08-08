@@ -111,6 +111,15 @@ wheels = [
 ]
 
 [[package]]
+name = "include"
+version = "0.2.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/44/c6/a263ccff96cb6c6e4b15c03108f5d8d99f44e0941096d1275bd4adca050a/include-0.2.2.tar.gz", hash = "sha256:37c2c6854f145bce050e75847c8da17039bdfae76d2c7e95bf531eaad2148e69", size = 9892, upload-time = "2018-08-02T14:50:03.482Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0f/2c/69552fa13f4a1af5a58f5f2a964bfdefdf6614a0d21b141fd9ed24c2776e/include-0.2.2-py2.py3-none-any.whl", hash = "sha256:58c7d81ba82b92ed432919aaa019bdde7258c569bfd85f1ea44a525576b20529", size = 14187, upload-time = "2018-08-02T14:50:05.225Z" },
+]
+
+[[package]]
 name = "mysqlclient"
 version = "2.2.7"
 source = { registry = "https://pypi.org/simple" }
@@ -489,6 +498,7 @@ dependencies = [
     { name = "django", version = "5.2.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "django-cleanup" },
     { name = "djangorestframework" },
+    { name = "include" },
     { name = "mysqlclient" },
     { name = "pillow" },
     { name = "psycopg", extra = ["binary"] },
@@ -507,6 +517,7 @@ requires-dist = [
     { name = "django", specifier = ">=4.2.23" },
     { name = "django-cleanup", specifier = ">=9.0.0" },
     { name = "djangorestframework", specifier = ">=3.16.1" },
+    { name = "include", specifier = ">=0.2.2" },
     { name = "mysqlclient", specifier = ">=2.2.7" },
     { name = "pillow", specifier = ">=11.3.0" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3" },
