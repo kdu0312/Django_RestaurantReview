@@ -1,0 +1,45 @@
+# Python cache & compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+*.egg
+
+# Virtual environment
+.venv/
+venv/
+env/
+ENV/
+
+# Environment variables
+.env
+.env.*
+
+# IDE & editor settings
+.vscode/
+.idea/
+
+# Django specific
+db.sqlite3
+*.log
+staticfiles/
+media/
+
+# pytest & test
+htmlcov/
+.coverage
+.tox/
+.pytest_cache/
+
+# MacOS
+.DS_Store
+
+# Ruff / lint cache
+.ruff_cache/
+
+# Docker
+*.pid
+*.seed
+*.sock
