@@ -13,82 +13,81 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import json
-import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # secret.json에서 키 로드 (배포 서버에도 동일 파일을 두거나, 나중에 os.environ으로 전환 권장)
-with open(BASE_DIR / 'secret.json', encoding='utf-8') as f:
+with open(BASE_DIR / "secret.json", encoding="utf-8") as f:
     SECRET = json.load(f)
-SECRET_KEY = SECRET['DJANGO_SECRET_KEY']
+SECRET_KEY = SECRET["DJANGO_SECRET_KEY"]
 
 # 앱
 DJANGO_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
 ]
 
 CUSTOM_APPS = [
-    'users',
-    'restaurants',
-    'reviews',
+    "users",
+    "restaurants",
+    "reviews",
 ]
 
 THIRD_PARTY_APPS = [
-    'django_extensions',
-    'rest_framework',
-    'django_cleanup',  # 또는 'django_cleanup.apps.CleanupConfig'로 통일
-    'drf_yasg',
-    'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist',  # 로그아웃(블랙리스트) 쓰면
+    "django_extensions",
+    "rest_framework",
+    "django_cleanup",  # 또는 'django_cleanup.apps.CleanupConfig'로 통일
+    "drf_yasg",
+    "rest_framework_simplejwt",
+    "rest_framework_simplejwt.token_blacklist",  # 로그아웃(블랙리스트) 쓰면
 ]
 
 INSTALLED_APPS = DJANGO_APPS + CUSTOM_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = "config.wsgi.application"
 
 # DRF/JWT (공통)
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ),
 }
 
@@ -100,12 +99,12 @@ SIMPLE_JWT = {
 }
 
 # 사용자 모델
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = "users.User"
 
 # 국제화(공통) — 한국 프로젝트라면 이렇게 두는 걸 권장
-LANGUAGE_CODE = 'ko-KR'
-TIME_ZONE = 'Asia/Seoul'
+LANGUAGE_CODE = "ko-KR"
+TIME_ZONE = "Asia/Seoul"
 USE_I18N = True
 USE_TZ = True
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

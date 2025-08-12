@@ -3,7 +3,6 @@ import unittest
 from tempfile import TemporaryDirectory
 
 from django.apps import apps
-from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import check_password
 from django.test import TestCase, override_settings
@@ -89,7 +88,9 @@ class UserAPITestCase(APITestCase):
     def test_signup_duplicate_email_rejected(self):
         self.client.post(reverse("user-signup"), self.data, format="json")
         resp = self.client.post(reverse("user-signup"), self.data, format="json")
-        self.assertIn(resp.status_code, (status.HTTP_400_BAD_REQUEST, status.HTTP_409_CONFLICT))
+        self.assertIn(
+            resp.status_code, (status.HTTP_400_BAD_REQUEST, status.HTTP_409_CONFLICT)
+        )
 
     def test_user_login(self):
         user = User.objects.create_user(**self.data)
@@ -111,7 +112,9 @@ class UserAPITestCase(APITestCase):
         user = User.objects.create_user(**self.data)
         # 인증 없이 접근
         resp = self.client.get(reverse("user-detail", kwargs={"pk": user.id}))
-        self.assertIn(resp.status_code, (status.HTTP_401_UNAUTHORIZED, status.HTTP_403_FORBIDDEN))
+        self.assertIn(
+            resp.status_code, (status.HTTP_401_UNAUTHORIZED, status.HTTP_403_FORBIDDEN)
+        )
 
     def test_get_user_details(self):
         user = User.objects.create_user(**self.data)
@@ -171,14 +174,18 @@ class UserAPITestCase(APITestCase):
         refresh = RefreshToken.for_user(user)
         access = str(refresh.access_token)
 
-        resp = self.client.post(reverse("token-verify"), {"token": access}, format="json")
+        resp = self.client.post(
+            reverse("token-verify"), {"token": access}, format="json"
+        )
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
 
     def test_jwt_refresh(self):
         user = User.objects.create_user(**self.data)
         refresh = RefreshToken.for_user(user)
 
-        resp = self.client.post(reverse("token-refresh"), {"refresh": str(refresh)}, format="json")
+        resp = self.client.post(
+            reverse("token-refresh"), {"refresh": str(refresh)}, format="json"
+        )
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertIn("access", resp.data)
 
@@ -194,5 +201,14 @@ class UserAPITestCase(APITestCase):
         refresh = RefreshToken.for_user(user)
 
         # 커스텀 로그아웃 엔드포인트 (프로젝트 라우트 네임에 맞춰 변경)
-        resp = self.client.post(reverse("jwt-logout"), {"refresh": str(refresh)}, format="json")
-        self.assertIn(resp.status_code, (status.HTTP_200_OK, status.HTTP_205_RESET_CONTENT, status.HTTP_204_NO_CONTENT))
+        resp = self.client.post(
+            reverse("jwt-logout"), {"refresh": str(refresh)}, format="json"
+        )
+        self.assertIn(
+            resp.status_code,
+            (
+                status.HTTP_200_OK,
+                status.HTTP_205_RESET_CONTENT,
+                status.HTTP_204_NO_CONTENT,
+            ),
+        )

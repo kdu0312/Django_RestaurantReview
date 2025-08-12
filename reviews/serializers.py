@@ -2,6 +2,7 @@ from rest_framework import serializers
 from reviews.models import Review
 from users.serializers import UserDetailSerializer
 
+
 class ReviewSerializer(serializers.ModelSerializer):
     # 읽기 시: user는 객체, restaurant는 PK(int)로 노출
     user = UserDetailSerializer(read_only=True)
@@ -17,6 +18,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         # 스키마 일관화: restaurant는 PK로 노출
         rep["restaurant"] = instance.restaurant_id
         return rep
+
 
 class ReviewDetailSerializer(ReviewSerializer):
     # 상세도 리스트와 동일 스키마 유지

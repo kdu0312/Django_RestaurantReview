@@ -12,7 +12,7 @@ ALLOWED_HOSTS = [
     "www.yourdomain.com",
 ]
 
-#DB: 배포 시작은 SQLite로 OK, 이후 MySQL/Postgres로 전환 권장
+# DB: 배포 시작은 SQLite로 OK, 이후 MySQL/Postgres로 전환 권장
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -34,12 +34,12 @@ DATABASES = {
 # 정적/미디어
 # URL은 앞에 슬래시 `/`를 붙이는 게 정석
 STATIC_URL = "/static/"
-MEDIA_URL  = "/media/"
+MEDIA_URL = "/media/"
 
 # 배포에서는 collectstatic 결과만 서빙 → STATICFILES_DIRS는 보통 생략
 # (개발용 정적 경로 모을 필요 X)
-STATIC_ROOT = BASE_DIR / "staticfiles"   # python manage.py collectstatic 타겟
-MEDIA_ROOT  = BASE_DIR / "mediafiles"    # PythonAnywhere에서 media 매핑
+STATIC_ROOT = BASE_DIR / "staticfiles"  # python manage.py collectstatic 타겟
+MEDIA_ROOT = BASE_DIR / "mediafiles"  # PythonAnywhere에서 media 매핑
 
 # (HTTPS 쓸 때 권장)
 # SECURE_SSL_REDIRECT = True

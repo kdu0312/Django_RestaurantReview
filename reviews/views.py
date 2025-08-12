@@ -1,6 +1,10 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, BasePermission, SAFE_METHODS
+from rest_framework.permissions import (
+    IsAuthenticatedOrReadOnly,
+    BasePermission,
+    SAFE_METHODS,
+)
 
 from restaurants.models import Restaurant
 from reviews.models import Review
@@ -38,7 +42,9 @@ class ReviewListCreateView(ListCreateAPIView):
 class ReviewDetailView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     serializer_class = ReviewDetailSerializer
-    lookup_url_kwarg = "review_id"   # reverse('review-detail', kwargs={'review_id': ...})와 일치
+    lookup_url_kwarg = (
+        "review_id"  # reverse('review-detail', kwargs={'review_id': ...})와 일치
+    )
 
     def get_queryset(self):
         # 객체 권한 체크가 동작하도록 전체 쿼리셋 반환(객체 단에서 IsOwnerOrReadOnly가 403 처리)

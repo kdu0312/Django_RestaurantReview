@@ -104,7 +104,9 @@ class ReviewAPIViewTestCase(APITestCase):
 
         res = self.client.post(url, self.payload, format="json")
 
-        self.assertIn(res.status_code, (status.HTTP_401_UNAUTHORIZED, status.HTTP_403_FORBIDDEN))
+        self.assertIn(
+            res.status_code, (status.HTTP_401_UNAUTHORIZED, status.HTTP_403_FORBIDDEN)
+        )
 
     def test_post_review_validation_error(self):
         url = reverse("review-list", kwargs={"restaurant_id": self.restaurant.id})

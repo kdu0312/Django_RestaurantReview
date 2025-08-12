@@ -33,7 +33,9 @@ class RestaurantModelTest(TestCase):
         self.assertEqual(str(restaurant.open_time), self.restaurant_info["open_time"])
         self.assertEqual(str(restaurant.close_time), self.restaurant_info["close_time"])
         self.assertEqual(str(restaurant.last_order), self.restaurant_info["last_order"])
-        self.assertEqual(restaurant.regular_holiday, self.restaurant_info["regular_holiday"])
+        self.assertEqual(
+            restaurant.regular_holiday, self.restaurant_info["regular_holiday"]
+        )
         # __str__ 확인 (restaurant.str() 아님에 주의)
         self.assertEqual(str(restaurant), self.restaurant_info["name"])
 
@@ -80,7 +82,9 @@ class RestaurantViewTest(APITestCase):
         self.assertEqual(item["open_time"], self.restaurant_info["open_time"])
         self.assertEqual(item["close_time"], self.restaurant_info["close_time"])
         self.assertEqual(item["last_order"], self.restaurant_info["last_order"])
-        self.assertEqual(item["regular_holiday"], self.restaurant_info["regular_holiday"])
+        self.assertEqual(
+            item["regular_holiday"], self.restaurant_info["regular_holiday"]
+        )
 
     def test_restaurant_post_view(self):
         url = reverse("restaurant-list")
